@@ -35,10 +35,10 @@ public class LogActivity extends AppCompatActivity {
         mAuthStateListener=new FirebaseAuth.AuthStateListener() {
             @Override
             public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
-                if(firebaseAuth.getCurrentUser()!=null){
+                /*if(firebaseAuth.getCurrentUser()!=null){
                     Intent myIntent=new Intent(LogActivity.this,AccountActivity.class);
                     LogActivity.this.startActivity(myIntent);
-                }
+                }*/
             }
         };
         btn.setOnClickListener(new View.OnClickListener() {
