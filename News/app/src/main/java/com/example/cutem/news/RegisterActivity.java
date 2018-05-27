@@ -1,18 +1,26 @@
 package com.example.cutem.news;
 
+import android.content.Intent;
+import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
+import android.util.Patterns;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 
 public class RegisterActivity extends AppCompatActivity {
-    private EditText mail;
-    private EditText pass;
-    private EditText rePass;
-    private Button register;
+    private EditText editTextMail;
+    private EditText editTextPass;
+    private EditText editTextRePass;
+    private Button buttonRegister;
     private FirebaseAuth mAuth;
     private FirebaseAuth.AuthStateListener mAuthStateListener;
 
@@ -22,18 +30,65 @@ public class RegisterActivity extends AppCompatActivity {
         setContentView(R.layout.activity_register2);
 
         mAuth=FirebaseAuth.getInstance();
-        mail=(EditText) findViewById(R.id.editText3);
-        pass=(EditText) findViewById(R.id.editText4);
-        rePass=(EditText) findViewById(R.id.editText5);
-        register=(Button) findViewById(R.id.button4);
+        editTextMail=(EditText) findViewById(R.id.editText3);
+        editTextPass=(EditText) findViewById(R.id.editText4);
+        editTextRePass=(EditText) findViewById(R.id.editText5);
+        buttonRegister=(Button) findViewById(R.id.button4);
 
-        register.setOnClickListener(new View.OnClickListener() {
+        buttonRegister.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                registerUser();
             }
         });
+    }
+    private void registerUser(){
+        String username=editTextMail.getText().toString().trim();
+        String password=editTextPass.getText().toString().trim();
+        String rePassword=editTextRePass.getText().toString().trim();
+        if(!Patterns.EMAIL_ADDRESS.matcher(username).matches()){
+            Toast.makeText(RegisterActivity.this,"Email not valid",Toast.LENGTH_LONG).show();
+            editTextMail.requestFocus();
+            return;
+        }
+        if(password.length()<6){
+            Toast.makeText(RegisterActivity.this,"Password lenght has to be grater then 6",Toast.LENGTH_LONG).show();
 
+        }
 
+        if(username.isEmpty()){
+            Toast.makeText(RegisterActivity.this,"Email is required",Toast.LENGTH_LONG).show();
+            editTextMail.requestFocus();
+            return;
+        }
+        if(password.isEmpty()){
+            Toast.makeText(RegisterActivity.this,"Password is required",Toast.LENGTH_LONG).show();
+            editTextPass.requestFocus();
+            return;
+        }
+        if(rePassword.isEmpty()){
+            Toast.makeText(RegisterActivity.this,"Retype password is required",Toast.LENGTH_LONG).show();
+            editTextRePass.requestFocus();
+            return;
+        }
+        Log.d(password,"PASSWORD");
+        Log.d(rePassword,"RE-----------------PASSWORD");
+
+        if(rePassword==password){
+            Log.d("------------","fdddddddddddddddddddddddddddddddddddddd");
+            Toast.makeText(RegisterActivity.this,"Password does not match",Toast.LENGTH_LONG).show();
+            editTextRePass.requestFocus();
+            return;
+        }
+
+        mAuth.createUserWithEmailAndPassword(username,password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+            @Override
+            public void onComplete(@NonNull Task<AuthResult> task) {
+                if(task.isSuccessful()){
+                    Intent myIntent=new Intent(RegisterActivity.this,AccountActivity.class);
+                    RegisterActivity.this.startActivity(myIntent);
+                }
+            }
+        });
     }
 }
