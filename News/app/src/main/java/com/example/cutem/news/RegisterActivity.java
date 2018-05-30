@@ -15,6 +15,8 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 public class RegisterActivity extends AppCompatActivity {
     private EditText editTextMail;
@@ -22,6 +24,7 @@ public class RegisterActivity extends AppCompatActivity {
     private EditText editTextRePass;
     private Button buttonRegister;
     private FirebaseAuth mAuth;
+    private DatabaseReference fUsersDataBase;
     private FirebaseAuth.AuthStateListener mAuthStateListener;
 
     @Override
@@ -30,6 +33,7 @@ public class RegisterActivity extends AppCompatActivity {
         setContentView(R.layout.activity_register2);
 
         mAuth=FirebaseAuth.getInstance();
+        fUsersDataBase= FirebaseDatabase.getInstance().getReference().child("Users");
         editTextMail=(EditText) findViewById(R.id.editText3);
         editTextPass=(EditText) findViewById(R.id.editText4);
         editTextRePass=(EditText) findViewById(R.id.editText5);
@@ -43,7 +47,7 @@ public class RegisterActivity extends AppCompatActivity {
         });
     }
     private void registerUser(){
-        String username=editTextMail.getText().toString().trim();
+        final String username=editTextMail.getText().toString().trim();
         String password=editTextPass.getText().toString().trim();
         String rePassword=editTextRePass.getText().toString().trim();
         if(!Patterns.EMAIL_ADDRESS.matcher(username).matches()){
@@ -85,6 +89,16 @@ public class RegisterActivity extends AppCompatActivity {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
                 if(task.isSuccessful()){
+                    fUsersDataBase.child(mAuth.getCurrentUser().getUid()).child("basic").child("name").setValue(username).addOnCompleteListener(new OnCompleteListener<Void>() {
+                        @Override
+                        public void onComplete(@NonNull Task<Void> task) {
+                            if (task.isSuccessful()) {
+
+                            }else{
+
+                            }
+                        }
+                    });
                     Intent myIntent=new Intent(RegisterActivity.this,AccountActivity.class);
                     RegisterActivity.this.startActivity(myIntent);
                 }

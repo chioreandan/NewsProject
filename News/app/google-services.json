@@ -15,12 +15,24 @@
       },
       "oauth_client": [
         {
+          "client_id": "351441137801-p8ual0i41buul0f0c967dve6fl73lop6.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.cutem.news",
+            "certificate_hash": "87dc520b6b49b3b99adec4b9b567fe3a42f6a47f"
+          }
+        },
+        {
           "client_id": "351441137801-ftd42bfbu1jivpc8jvh540sh7th0t8ru.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
             "package_name": "com.example.cutem.news",
             "certificate_hash": "8503c9c2bfa9e5d3387849e6167e55e00d887c14"
           }
+        },
+        {
+          "client_id": "351441137801-5tpfd82fdj36bt9ugo00ailish09gcd1.apps.googleusercontent.com",
+          "client_type": 3
         },
         {
           "client_id": "351441137801-5tpfd82fdj36bt9ugo00ailish09gcd1.apps.googleusercontent.com",
@@ -44,6 +56,41 @@
               "client_type": 3
             }
           ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:351441137801:android:43dd41d382d9cc0b",
+        "android_client_info": {
+          "package_name": "example.androidgrid.simplenotesapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "351441137801-5tpfd82fdj36bt9ugo00ailish09gcd1.apps.googleusercontent.com",
+          "client_type": 3
+        },
+        {
+          "client_id": "351441137801-5tpfd82fdj36bt9ugo00ailish09gcd1.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBDPbG4390cwI7jZqfvmcND70H7Emnw39M"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
         },
         "ads_service": {
           "status": 2

@@ -6,4 +6,11 @@
     android:layout_height="match_parent"
     tools:context=".AccountActivity">
 
+    <Button
+        android:id="@+id/button6"
+        android:layout_width="348dp"
+        android:layout_height="wrap_content"
+        android:text="Add a new note"
+        tools:layout_editor_absoluteX="16dp"
+        tools:layout_editor_absoluteY="16dp" />
 </android.support.constraint.ConstraintLayout>
