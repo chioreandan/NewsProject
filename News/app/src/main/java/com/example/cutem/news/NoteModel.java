@@ -3,9 +3,7 @@ package com.example.cutem.news;
 public class NoteModel {
     public String noteTitle;
     public String noteTime;
-    public NoteModel(){
 
-    }
 
     public NoteModel(String noteTitle, String noteTime) {
         this.noteTitle = noteTitle;

@@ -2,15 +2,18 @@ package com.example.cutem.news;
 
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 public class NoteViewHolder extends RecyclerView.ViewHolder {
+    public LinearLayout root;
     View mView;
     TextView textTitle,textTime;
 
     public NoteViewHolder(View itemView) {
         super(itemView);
         mView=itemView;
+        root=mView.findViewById(R.id.main_notes_list);
         textTitle=mView.findViewById(R.id.note_title);
         textTime=mView.findViewById(R.id.note_time);
     }

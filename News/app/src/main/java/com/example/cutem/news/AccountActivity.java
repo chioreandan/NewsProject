@@ -24,7 +24,7 @@ public class AccountActivity extends AppCompatActivity {
         seeNotes.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent myIntent=new Intent(AccountActivity.this,Main2Activity.class);
+                Intent myIntent=new Intent(AccountActivity.this,VizualizareNote.class);
                 AccountActivity.this.startActivity(myIntent);
             }
         });
